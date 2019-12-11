@@ -1,0 +1,128 @@
+<p>
+    <strong>
+        Lexical scoping:
+    </strong>
+    Lexical scope is a scope that is defined at compile time.
+
+    In JavaScript a new scope is created only when you create a new function.
+
+    Here is an example showing the implications of this:
+    <pre>
+       console.log(a) // a == undefined
+       function parentScope(){
+          var a = 0;
+          function firstScope(){
+              console.log(a) // a == 0 
+              a = 1;
+              console.log(a) // a == 1
+          }
+          function secondScope(){
+              console.log(a) // a == 0 
+          }
+       }
+       console.log(a) // a == undefined
+    </pre>
+
+    <strong>
+        Closures:
+    </strong>
+    A closure is the combination of a function enclosed with references to its
+    surrounding lexical scope.
+
+    Or in other words it's a function with a special connection to the data
+    used by that function.
+
+    <strong>
+        !! Even when that data would conventionally be garbage collected!!
+    </strong>
+
+    <pre>
+      function lexicalEnv() {
+         var data = 'Mozilla';
+             function functionWithReferenceToData() {
+                alert(data );
+             }
+         return functionWithReferenceToData;
+      }
+      var Closure = lexicalEnv();
+      Closure(); // Alerts 'Mozilla' which demonstrates access to the data variable 
+                 // in the lexicalEnv function. 
+    </pre>
+
+    <strong>
+        IIFE:
+    </strong>
+
+    An IIFE is a a function expression that is immediately invoked inside of
+    parenthesis , make the whole thing a single expression.
+
+    This effectively creates an isolated new scope that cannot affect the rest of
+    the program.
+
+    <pre>
+       (function () {
+          var untouchAble = true;
+       })();
+       untouchAble // "Uncaught ReferenceError: untouchAble is not defined"
+   </pre>
+
+    <strong>Modules:</strong>
+
+    A module is a design pattern that builds on closure to provide encapsulation.
+
+    Here is the Wikipedia definition of encapsulation:
+
+    In object-oriented programming, encapsulation refers to the bundling of data
+    with the methods that operate on that data, or the restricting of direct access
+    to some of an object's components.
+
+    The module pattern does this by creating its own scope using IIFE's and then
+    returns a object method that closes over the modules' separate scope.
+
+    <pre>
+
+  var myModule = (function() {
+    var _publicVar = 'can touch this';
+    var _privateMethod = 'can't touch this';
+  
+    publicFunc: function() {
+        console.log('Worked One');
+    }
+  
+    privateFunc: function() {
+        console.log('!');
+    }
+  
+    return {
+     _publicVar,
+      publicFunc
+    };
+  
+  }());
+  
+  var myModuleTwo = (function() {
+    var _publicVar = 'can touch this';
+    var _privateMethod = 'can't touch this';
+  
+    publicFunc: function() {
+        console.log('Worked Two');
+    }
+  
+    privateFunc: function() {
+        console.log('!');
+    }
+  
+    return {
+     _publicVar,
+      publicFunc
+    };
+  
+  }());
+       
+  myModule.publicFunc(); // Worked One
+  myModuleTwo .publicFunc(); // Worked Two
+  
+  </pre>
+
+    <strong>Keep in mindthat the scope in myModule is separate from the scope in myModuleTwo.</strong>
+</p>
