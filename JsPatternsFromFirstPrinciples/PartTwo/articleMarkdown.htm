@@ -1,0 +1,98 @@
+<h3>Literals</h3>
+
+What is a literal?
+
+Well lets ask <i>Wikipedia</i> :
+
+<strong>In computer science, a literal is a notation for representing a fixed value in source code. Almost all programming languages have notations for atomic values such as integers, floating-point numbers, and strings, and usually for Boolean and characters; some also have notations for elements of enumerated types and compound values such as arrays, records, and objects.</strong>
+
+<u>The list of JavaScript literals are:</u>
+
+<ul>
+   <li>Boolean literal</li>
+   <li>Null literal</li> 
+   <li>Numeric literals</li>
+   <li>Object literals</li>
+   <li>Array literals</li>
+   <li>String literals</li>
+   <li>Regular expression literals</li>
+   <li>Template literals</li>
+</ul>
+
+For the case of comprehensiveness I will be adding references to important topics whilst introducing the literals. 
+
+All of these are important for understanding that specific literal.
+
+The next view parts of this series will be an in depth discussion of every one of these literals. 
+
+And in this Article we will discuss Boolean and Null literals.
+
+<strong>But before that we must discuss truthy and falsy:</strong>
+
+In JavaScript, a truthy value is a value that is considered true when encountered in a Boolean context. 
+
+<strong>All values are truthy</strong> unless they are defined as falsy:
+
+Here are all the falsy values: 
+
+<ul>
+<li>undefined</li>
+<li>null</li>
+<li>NaN</li>
+<li>0</li>
+<li>""</li>
+<li>false</li>
+</ul>
+
+JavaScript uses type coercion in Boolean contexts.
+
+Examples of truthy values in JavaScript (which will be coerced to true in boolean contexts, <strong>and thus execute the if block</strong>):
+
+<pre>
+// THESE ARE ALL TRUE
+if (true)
+if ({})
+if ([])
+if (42)
+if ("0")
+if ("false")
+if (new Date())
+if (-42)
+if (12n)
+if (3.14)
+if (-3.14)
+if (Infinity)
+if (-Infinity)
+</pre>
+
+
+Examples of falsy values in JavaScript (which are coerced to false in Boolean contexts, and thus bypass the if block):
+
+<pre>
+if (false)
+if (null)
+if (undefined)
+if (0)
+if (0n)
+if (NaN)
+if ('')
+if ("")
+if (``)
+if (document.all)
+</pre>
+
+<strong>Boolean literals:</strong>
+true
+false
+
+<strong>Null literal:</strong>
+
+null
+
+The value null represents <strong>the intentional absence of any object value</strong>. It is one of JavaScript's primitive values and is treated as falsy for boolean operations.
+
+And that's it for part 2!
+
+<u>Sources:</u>
+https://en.wikipedia.org/wiki/Literal_(computer_programming)
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar
